@@ -2,6 +2,8 @@ package student;
 
 import java.util.stream.Stream;
 import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Interface for a list of games. DO NOT MODIFY THIS FILE.
@@ -15,7 +17,7 @@ import java.util.List;
  * be used to store a list of games that the user has selected/wants to play.
  * 
  * A few things to note about the GameList
- * * Values are unique / no duplicates (based on BoardGame.equals/equality)
+ * * Values are unique / no duplicates (based on BoardGame.equals/equality) USE SET!!!!!!!!!!!!!!!!!
  * * It will return values in Case Insensitive ascending order of game Name for
  * any method
  * that returns a list of games or strings.
@@ -33,7 +35,6 @@ public interface IGameList {
      * @return the list of game names in ascending order ignoring case.
      */
     List<String> getGameNames();
-
     /**
      * Removes all games in the list (clears it out completely).
      */

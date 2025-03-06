@@ -11,13 +11,13 @@ Place your class diagrams below. Make sure you check the file in the browser on 
 ### Provided Code
 
 Provide a class diagram for the provided code as you read through it.  For the classes you are adding, you will create them as a separate diagram, so for now, you can just point towards the interfaces for the provided code diagram.
-
+![uml.png](uml.png)
 
 
 ### Your Plans/Design
 
 Create a class diagram for the classes you plan to create. This is your initial design, and it is okay if it changes. Your starting points are the interfaces. 
-
+![UML_not_provided.png](UML_not_provided.png)
 
 
 
@@ -36,8 +36,13 @@ Write a test (in english) that you can picture for the class diagram you have cr
 
 You should feel free to number your brainstorm. 
 
-1. Test 1..
-2. Test 2..
+1. Test ``GameList`` return the exact amount of games that it should return
+2. Test ``GameList`` can add and remove the game from the list as expected
+3. Test ``GameList`` save game function save the right amount of game to the list
+4.  Test ``GameList`` remove all elements from listOfGames field
+4. Test ``Planner`` filter function that return the Stream<BoardGame> type
+5. Test ``Planner`` filter function that filter the expected element by the argument passed in
+6. Test ``Planner`` remove all elements from the games filed
 
 
 

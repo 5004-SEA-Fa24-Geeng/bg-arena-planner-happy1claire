@@ -39,6 +39,49 @@ public class TestPlanner {
         assertEquals(1, filtered.size());
         assertEquals("Go", filtered.get(0).getName());
     }
-    
+
+    @Test
+    public void testFiltermax() {
+        IPlanner planner = new Planner(games);
+        List<BoardGame> filtered = planner.filter("MaxPlayers < 10, MinPlayers > 5").toList();
+        for (BoardGame game : filtered) {
+            System.out.println(game);
+        }
+        assertEquals(1, filtered.size());
+        assertEquals("GoRami", filtered.get(0).getName());
+    }
+
+    @Test
+    public void testFilterWithSorton() {
+        IPlanner planner = new Planner(games);
+        List<BoardGame> filtered = planner.filter("maxPlayers>=7", GameData.MIN_PLAYERS).toList();
+        for (BoardGame game : filtered) {
+            System.out.println(game);
+        }
+        assertEquals(5, filtered.size());
+        assertEquals("17 days", filtered.get(0).getName());
+    }
+
+    @Test
+    public void testFilterWithSorton2() {
+        IPlanner planner = new Planner(games);
+        List<BoardGame> filtered = planner.filter("maxPlayers>=7", GameData.MAX_PLAYERS).toList();
+        for (BoardGame game : filtered) {
+            System.out.println(game);
+        }
+        assertEquals(5, filtered.size());
+        assertEquals("golang", filtered.get(0).getName());
+    }
+
+    @Test
+    public void testFilterWithSortonAndDesc() {
+        IPlanner planner = new Planner(games);
+        List<BoardGame> filtered = planner.filter("maxPlayers>=7", GameData.MAX_PLAYERS, false).toList();
+        for (BoardGame game : filtered) {
+            System.out.println(game);
+        }
+        assertEquals(8, filtered.size());
+        assertEquals("Tucano", filtered.get(0).getName());
+    }
 
 }

@@ -44,6 +44,10 @@ public final class Filters {
                 return gameData.compareTo(value) > 0;
             case LESS_THAN:
                 return gameData.compareTo(value) < 0;
+            case GREATER_THAN_EQUALS:
+                return gameData.compareTo(value) >= 0;
+            case LESS_THAN_EQUALS:
+                return gameData.compareTo(value) <= 0;
             default:
                 return false;
         }

@@ -76,16 +76,17 @@ public class Planner implements IPlanner {
         }
 
         // remove spaces
-        filter = filter.replaceAll(" ", "");
+        filter = filter.trim();
 
         String[] parts = filter.split(operator.getOperator());
+
         if (parts.length != 2) {
             return filteredGames;
         }
 
         GameData column;
         try {
-            column = GameData.fromString(parts[0]);
+            column = GameData.fromString(parts[0].replace(" ", ""));
         } catch (IllegalArgumentException e) {
             return filteredGames;
         }

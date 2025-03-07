@@ -12,7 +12,7 @@ public final class Filters {
         switch (column) {
             case NAME:
                 // filter name
-                return filterString(game.getName().toLowerCase(), operations, value);
+                return filterString(game.getName(), operations, value);
             case MAX_PLAYERS:
                 return filterNum(game.getMaxPlayers(), operations, value);
             case MIN_PLAYERS:
@@ -39,7 +39,7 @@ public final class Filters {
             case NOT_EQUALS:
                 return !gameData.equals(value);
             case CONTAINS:
-                return gameData.contains(value.toLowerCase());
+                return gameData.contains(value);
             default:
                 return false;
         }

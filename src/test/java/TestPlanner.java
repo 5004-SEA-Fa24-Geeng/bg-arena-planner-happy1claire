@@ -80,7 +80,7 @@ public class TestPlanner {
         for (BoardGame game : filtered) {
             System.out.println(game);
         }
-        assertEquals(8, filtered.size());
+        assertEquals(5, filtered.size());
         assertEquals("Tucano", filtered.get(0).getName());
     }
 

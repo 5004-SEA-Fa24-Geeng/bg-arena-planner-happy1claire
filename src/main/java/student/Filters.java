@@ -35,11 +35,11 @@ public final class Filters {
     public static boolean filterString(String gameData, Operations operations, String value) {
         switch (operations) {
             case EQUALS:
-                return gameData.equals(value.toLowerCase());
+                return gameData.equals(value);
             case NOT_EQUALS:
-                return !gameData.equals(value.toLowerCase());
+                return !gameData.equals(value);
             case CONTAINS:
-                return gameData.contains(value.toLowerCase());
+                return gameData.contains(value);
             default:
                 return false;
         }

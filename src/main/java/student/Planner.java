@@ -74,9 +74,9 @@ public class Planner implements IPlanner {
         if (operator == null) {
             return filteredGames;
         }
+
         // remove spaces
         filter = filter.replaceAll(" ", "");
-        filter = filter.toLowerCase();
 
         String[] parts = filter.split(operator.getOperator());
         if (parts.length != 2) {
@@ -92,7 +92,7 @@ public class Planner implements IPlanner {
 
         String value;
         try {
-            value = parts[1].trim();
+            value = parts[1].trim().toLowerCase();
         } catch (IllegalArgumentException e) {
             return filteredGames;
         }

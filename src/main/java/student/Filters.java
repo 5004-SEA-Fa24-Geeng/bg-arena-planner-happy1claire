@@ -40,6 +40,10 @@ public final class Filters {
                 return !gameData.equals(value);
             case CONTAINS:
                 return gameData.contains(value);
+            case GREATER_THAN:
+                return gameData.compareTo(value) > 0;
+            case LESS_THAN:
+                return gameData.compareTo(value) < 0;
             default:
                 return false;
         }

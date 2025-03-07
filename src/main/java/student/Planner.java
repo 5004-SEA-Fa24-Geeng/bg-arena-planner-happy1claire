@@ -77,8 +77,10 @@ public class Planner implements IPlanner {
 
         // remove spaces
         filter = filter.trim();
-
         String[] parts = filter.split(operator.getOperator());
+        for (int i = 0; i < parts.length; i++) {
+            parts[i] = parts[i].trim();
+        }
 
         if (parts.length != 2) {
             return filteredGames;
@@ -86,7 +88,7 @@ public class Planner implements IPlanner {
 
         GameData column;
         try {
-            column = GameData.fromString(parts[0].replace(" ", ""));
+            column = GameData.fromString(parts[0]);
         } catch (IllegalArgumentException e) {
             return filteredGames;
         }

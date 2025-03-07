@@ -4,59 +4,66 @@ package student;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
 public class Planner implements IPlanner {
     Set<BoardGame> games;
-    Stream<BoardGame> filteredStream;
+    Set<BoardGame> orginalgames;
 
     public Planner(Set<BoardGame> games) {
         this.games = games;
-        this.filteredStream = games.stream();
+        this.orginalgames = games;
     }
 
     @Override
     public Stream<BoardGame> filter(String filter) {
-        // Separating multiple filters
+        Stream<BoardGame> result = games.stream();
+
         String[] separatedFilters = filter.split(",");
         for (String separatedFilter : separatedFilters) {
             separatedFilter = separatedFilter.trim();
-            this.filteredStream = Planner.filterSingle(separatedFilter, this.filteredStream);
+            result = Planner.filterSingle(separatedFilter, result);
         }
 
-        // GetName or something to pass into stream.
-        return this.filteredStream.sorted((game1, game2) -> game1.getName().compareToIgnoreCase(game2.getName()));
+        Stream<BoardGame> sortedResult = result.sorted((game1, game2) ->
+                game1.getName().compareToIgnoreCase(game2.getName()));
+        this.games = sortedResult.collect(Collectors.toSet());
+
+        return this.games.stream();
     }
 
     @Override
     public Stream<BoardGame> filter(String filter, GameData sortOn) {
-        // Separating multiple filters
+        Stream<BoardGame> result = games.stream();
+
         String[] separatedFilters = filter.split(",");
         for (String separatedFilter : separatedFilters) {
             separatedFilter = separatedFilter.trim();
-            this.filteredStream = Planner.filterSingle(separatedFilter, this.filteredStream);
+            result = Planner.filterSingle(separatedFilter, result);
         }
 
-        return applySorting(this.filteredStream, sortOn, true);
+        Stream<BoardGame> sortedResult = applySorting(result, sortOn, true);
+        this.games = sortedResult.collect(Collectors.toSet());
+
+        return this.games.stream();
     }
 
     @Override
     public Stream<BoardGame> filter(String filter, GameData sortOn, boolean ascending) {
-        Stream<BoardGame> filteredStream = this.games.stream();;
+        Stream<BoardGame> result = games.stream();
 
-        // Separating multiple filters
         String[] separatedFilters = filter.split(",");
         for (String separatedFilter : separatedFilters) {
             separatedFilter = separatedFilter.trim();
-            filteredStream = Planner.filterSingle(separatedFilter, filteredStream);
+            result = Planner.filterSingle(separatedFilter, result);
         }
 
-        if (ascending) {
-            return applySorting(this.filteredStream, sortOn, true);
-        } else {
-            return applySorting(this.filteredStream, sortOn, false);
-        }
+        Stream<BoardGame> sortedResult = applySorting(result, sortOn, ascending);
+        this.games = sortedResult.collect(Collectors.toSet());
+
+        return this.games.stream();
     }
 
     // Helper function to be call on single filter that can be used in filter functions.
@@ -126,6 +133,6 @@ public class Planner implements IPlanner {
 
     @Override
     public void reset() {
-        this.filteredStream = this.games.stream();
+        this.games = this.orginalgames;
     }
 }

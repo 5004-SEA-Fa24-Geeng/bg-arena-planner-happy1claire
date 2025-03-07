@@ -28,7 +28,7 @@ public class Planner implements IPlanner {
         }
 
         Stream<BoardGame> sortedResult = result.sorted((game1, game2) ->
-                game1.getName().compareToIgnoreCase(game2.getName()));
+                game1.getName().compareTo(game2.getName()));
         this.games = sortedResult.collect(Collectors.toSet());
 
         return this.games.stream();

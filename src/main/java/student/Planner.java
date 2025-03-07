@@ -10,8 +10,8 @@ import java.util.stream.Stream;
 
 
 public class Planner implements IPlanner {
-    Set<BoardGame> games;
-    Set<BoardGame> filteredGames;
+    private Set<BoardGame> games;
+    private Set<BoardGame> filteredGames;
 
     public Planner(Set<BoardGame> games) {
         this.games = games;
@@ -30,7 +30,9 @@ public class Planner implements IPlanner {
 
         this.filteredGames = stream.collect(Collectors.toSet());
 
-        return this.filteredGames.stream().sorted(Comparator.comparing(BoardGame::getName, String.CASE_INSENSITIVE_ORDER));
+        return this.filteredGames.stream()
+                .sorted(Comparator.comparing(BoardGame::getName,
+                        String.CASE_INSENSITIVE_ORDER));
     }
 
     @Override

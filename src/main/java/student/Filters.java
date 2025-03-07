@@ -1,7 +1,5 @@
 package student;
 
-import java.sql.Struct;
-
 public final class Filters {
     private Filters() {}
 

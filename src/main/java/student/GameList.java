@@ -1,13 +1,9 @@
 package student;
 
-import jdk.jshell.spi.SPIResolutionException;
-
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class GameList implements IGameList {
@@ -97,58 +93,6 @@ public class GameList implements IGameList {
             throw new IllegalArgumentException("Invalid input");
         }
     }
-
-//    @Override
-//    public void removeFromList(String str) throws IllegalArgumentException {
-//        if (containStringOnly(str)) {
-//            this.listOfGames.remove(str);
-//        } else if (containNumberScope(str)) {
-//            str = str.replaceAll(" ", "");
-//            String[] numbers = str.split("-");
-//            int startIndex = Integer.parseInt(numbers[0]) - 1;
-//            int endIndex = Integer.parseInt(numbers[1]);
-//
-//            if (numbers.length != 2) {
-//                throw new IllegalArgumentException("More Than one set of numbers passed in.");
-//            } else if (startIndex > this.listOfGames.size()
-//                    || endIndex > this.listOfGames.size()
-//                    || startIndex < 0
-//                    || endIndex < 0
-//                    || startIndex > Integer.parseInt(numbers[1])) {
-//                throw new IllegalArgumentException("Number out of range.");
-//            }
-//
-//            Iterator<String> iterator = listOfGames.iterator();
-//            int count = 0;
-//            while (iterator.hasNext()) {
-//                iterator.next();
-//                if (count >= startIndex && count < endIndex) {
-//                    iterator.remove();
-//                }
-//                count++;
-//            }
-//        } else if (str.equals(ADD_ALL)) {
-//            clear();
-//        } else if (containOneNumber(str)) {
-//            int targetIndex = Integer.parseInt(str) - 1;
-//            if (targetIndex < 0 || targetIndex > listOfGames.size()) {
-//                throw new IllegalArgumentException("Number out of range.");
-//            }
-//
-//            Iterator<String> iterator = listOfGames.iterator();
-//            int count = 0;
-//            while (iterator.hasNext()) {
-//                iterator.next();
-//                if (count == targetIndex) {
-//                    iterator.remove();
-//                    return;
-//                }
-//                count++;
-//            }
-//        } else {
-//            throw new IllegalArgumentException("The game doesn't exist.");
-//        }
-//    }
 
     @Override
     public void removeFromList(String str) throws IllegalArgumentException {

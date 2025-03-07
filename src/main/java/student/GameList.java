@@ -188,7 +188,6 @@ public class GameList implements IGameList {
             if (!listOfGames.remove(str)) {
                 throw new IllegalArgumentException("Game not found.");
             }
-
         } else {
             throw new IllegalArgumentException("Invalid input.");
         }

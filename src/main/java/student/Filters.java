@@ -58,6 +58,8 @@ public final class Filters {
         switch (operations) {
             case EQUALS:
                 return gameData == intValue;
+            case NOT_EQUALS:
+                return gameData != intValue;
             case GREATER_THAN:
                 return gameData > intValue;
             case LESS_THAN:
@@ -76,6 +78,8 @@ public final class Filters {
         switch (operations) {
             case EQUALS:
                 return gameData == doubleValue;
+            case NOT_EQUALS:
+                return gameData != doubleValue;
             case GREATER_THAN:
                 return gameData > doubleValue;
             case LESS_THAN:

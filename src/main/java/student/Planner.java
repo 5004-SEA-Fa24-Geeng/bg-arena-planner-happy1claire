@@ -14,7 +14,6 @@ public class Planner implements IPlanner {
     Set<BoardGame> filteredGames;
 
     public Planner(Set<BoardGame> games) {
-        // TODO Auto-generated method stub
         this.games = games;
         this.filteredGames = games;
     }
@@ -77,6 +76,7 @@ public class Planner implements IPlanner {
         }
         // remove spaces
         filter = filter.replaceAll(" ", "");
+        filter = filter.toLowerCase();
 
         String[] parts = filter.split(operator.getOperator());
         if (parts.length != 2) {

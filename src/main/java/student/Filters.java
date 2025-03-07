@@ -37,7 +37,7 @@ public final class Filters {
             case EQUALS:
                 return gameData.equals(value.toLowerCase());
             case NOT_EQUALS:
-                return !gameData.equals(value);
+                return !gameData.equals(value.toLowerCase());
             case CONTAINS:
                 return gameData.contains(value.toLowerCase());
             default:

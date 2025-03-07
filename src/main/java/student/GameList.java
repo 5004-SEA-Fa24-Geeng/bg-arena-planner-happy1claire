@@ -1,5 +1,9 @@
 package student;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -8,7 +12,7 @@ import java.util.stream.Stream;
 
 public class GameList implements IGameList {
     private Set<String> listOfGames;
-    private String ADD_ALL = "all";
+    private final String ADD_ALL = "all";
 
     /**
      * Constructor for the GameList.
@@ -19,31 +23,33 @@ public class GameList implements IGameList {
 
     @Override
     public List<String> getGameNames() {
-        // TODO Auto-generated method stub
         return List.copyOf(this.listOfGames);
     }
 
     @Override
     public void clear() {
-        // TODO Auto-generated method stub
         this.listOfGames = new HashSet<>();
     }
 
     @Override
     public int count() {
-        // TODO Auto-generated method stub
         return this.listOfGames.size();
     }
 
     @Override
     public void saveGame(String filename) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'saveGame'");
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+            for (String element : this.listOfGames) {
+                writer.write(element);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            System.err.println("An error occurred: " + e.getMessage());
+        }
     }
 
     @Override
     public void addToList(String str, Stream<BoardGame> filtered) throws IllegalArgumentException {
-        // TODO Auto-generated method stub
         List<BoardGame> filteredList = filtered.toList();
 
         if (str.equals(ADD_ALL)) {
@@ -85,14 +91,16 @@ public class GameList implements IGameList {
             }
             throw new IllegalArgumentException("Cannot find the game.");
         } else {
-            throw new IllegalArgumentException("Cannot recongnize input");
+            throw new IllegalArgumentException("Invalid input");
         }
     }
 
     @Override
     public void removeFromList(String str) throws IllegalArgumentException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeFromList'");
+        if (this.listOfGames.contains(str)) {
+            listOfGames.remove(str);
+        } else {
+            throw new IllegalArgumentException("The game doesn't exist.");
+        }
     }
-
 }

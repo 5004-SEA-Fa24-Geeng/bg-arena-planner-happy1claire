@@ -51,14 +51,13 @@ class GameListTest {
 
     @Test
     void saveGame() {
+        IGameList list1 = new GameList();
+        list1.addToList("1-3", games.stream());
+        list1.saveGame("output");
     }
 
     @Test
     void testAddSingleGameToListByIndex() {
-        // HashSet doesn't order. It will return the things we don't like.
-        // See IGameList addToList for why we need to order. Consider LinkedHashSet to implement.
-
-        // Param String str, Stream<BoardGame> filtered
         IGameList list1 = new GameList();
         list1.addToList("1", games.stream());
 
@@ -74,10 +73,17 @@ class GameListTest {
         assertEquals(3, list1.count());
 
         System.out.println(list1.getGameNames());
-        games.stream().forEach(s -> System.out.println("Filtered element: " + s));;
+        games.stream().forEach(s -> System.out.println("Filtered element: " + s));
     }
 
     @Test
     void removeFromList() {
+        IGameList list1 = new GameList();
+        list1.addToList("4-6", games.stream());
+        for (String game: list1.getGameNames()) {
+            System.out.println(game);
+        }
+        list1.removeFromList("Go");
+        assertEquals(List.of("Tucano", "17 days"), list1.getGameNames());
     }
 }

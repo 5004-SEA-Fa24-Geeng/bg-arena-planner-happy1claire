@@ -12,15 +12,12 @@ public class Planner implements IPlanner {
     Stream<BoardGame> filteredStream;
 
     public Planner(Set<BoardGame> games) {
-        // TODO Auto-generated method stub
         this.games = games;
         this.filteredStream = games.stream();
     }
 
     @Override
     public Stream<BoardGame> filter(String filter) {
-        // TODO Auto-generated method stub
-
         // Separating multiple filters
         String[] separatedFilters = filter.split(",");
         for (String separatedFilter : separatedFilters) {
@@ -34,8 +31,6 @@ public class Planner implements IPlanner {
 
     @Override
     public Stream<BoardGame> filter(String filter, GameData sortOn) {
-        // TODO Auto-generated method stub
-
         // Separating multiple filters
         String[] separatedFilters = filter.split(",");
         for (String separatedFilter : separatedFilters) {
@@ -48,8 +43,6 @@ public class Planner implements IPlanner {
 
     @Override
     public Stream<BoardGame> filter(String filter, GameData sortOn, boolean ascending) {
-        // TODO Auto-generated method stub
-
         Stream<BoardGame> filteredStream = this.games.stream();;
 
         // Separating multiple filters
@@ -128,13 +121,11 @@ public class Planner implements IPlanner {
             }
             return gameStream.sorted(comparator);
         }
-
         return gameStream;
     }
 
     @Override
     public void reset() {
-        // TODO Auto-generated method stub
         this.filteredStream = this.games.stream();
     }
 }

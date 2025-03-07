@@ -4,66 +4,66 @@ package student;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
 public class Planner implements IPlanner {
     Set<BoardGame> games;
-    Set<BoardGame> orginalgames;
+    Stream<BoardGame> filteredStream;
 
     public Planner(Set<BoardGame> games) {
+        // TODO Auto-generated method stub
         this.games = games;
-        this.orginalgames = games;
+        this.filteredStream = games.stream();
     }
 
     @Override
     public Stream<BoardGame> filter(String filter) {
-        Stream<BoardGame> result = games.stream();
+        // TODO Auto-generated method stub
 
+        // Separating multiple filters
         String[] separatedFilters = filter.split(",");
         for (String separatedFilter : separatedFilters) {
             separatedFilter = separatedFilter.trim();
-            result = Planner.filterSingle(separatedFilter, result);
+            this.filteredStream = Planner.filterSingle(separatedFilter, this.filteredStream);
         }
 
-        Stream<BoardGame> sortedResult = result.sorted((game1, game2) ->
-                game1.getName().compareTo(game2.getName()));
-        this.games = sortedResult.collect(Collectors.toSet());
-
-        return this.games.stream();
+        // GetName or something to pass into stream.
+        return this.filteredStream.sorted((game1, game2) -> game1.getName().compareToIgnoreCase(game2.getName()));
     }
 
     @Override
     public Stream<BoardGame> filter(String filter, GameData sortOn) {
-        Stream<BoardGame> result = games.stream();
+        // TODO Auto-generated method stub
 
+        // Separating multiple filters
         String[] separatedFilters = filter.split(",");
         for (String separatedFilter : separatedFilters) {
             separatedFilter = separatedFilter.trim();
-            result = Planner.filterSingle(separatedFilter, result);
+            this.filteredStream = Planner.filterSingle(separatedFilter, this.filteredStream);
         }
 
-        Stream<BoardGame> sortedResult = applySorting(result, sortOn, true);
-        this.games = sortedResult.collect(Collectors.toSet());
-
-        return this.games.stream();
+        return applySorting(this.filteredStream, sortOn, true);
     }
 
     @Override
     public Stream<BoardGame> filter(String filter, GameData sortOn, boolean ascending) {
-        Stream<BoardGame> result = games.stream();
+        // TODO Auto-generated method stub
 
+        Stream<BoardGame> filteredStream = this.games.stream();;
+
+        // Separating multiple filters
         String[] separatedFilters = filter.split(",");
         for (String separatedFilter : separatedFilters) {
             separatedFilter = separatedFilter.trim();
-            result = Planner.filterSingle(separatedFilter, result);
+            filteredStream = Planner.filterSingle(separatedFilter, filteredStream);
         }
 
-        Stream<BoardGame> sortedResult = applySorting(result, sortOn, ascending);
-        this.games = sortedResult.collect(Collectors.toSet());
-
-        return this.games.stream();
+        if (ascending) {
+            return applySorting(this.filteredStream, sortOn, true);
+        } else {
+            return applySorting(this.filteredStream, sortOn, false);
+        }
     }
 
     // Helper function to be call on single filter that can be used in filter functions.
@@ -96,10 +96,6 @@ public class Planner implements IPlanner {
             return filteredGames;
         }
 
-        System.out.println(operator);
-        System.out.println(column);
-        System.out.println(value);
-
         // Call Comparator in filter which is built in Filter class
         Stream<BoardGame> filteredGamesList = filteredGames
                 .filter(game -> Filters.filter(game, column, operator, value));
@@ -128,11 +124,13 @@ public class Planner implements IPlanner {
             }
             return gameStream.sorted(comparator);
         }
+
         return gameStream;
     }
 
     @Override
     public void reset() {
-        this.games = this.orginalgames;
+        // TODO Auto-generated method stub
+        this.filteredStream = this.games.stream();
     }
 }

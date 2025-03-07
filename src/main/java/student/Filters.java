@@ -23,6 +23,8 @@ public final class Filters {
                 return filterNum(game.getMinPlayTime(), operations, value);
             case RANK:
                 return filterNum(game.getRank(), operations, value);
+            case RATING:
+                return filterDouble(game.getRating(), operations, value);
             case DIFFICULTY:
                 return filterDouble(game.getDifficulty(), operations, value);
             case YEAR:

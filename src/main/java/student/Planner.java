@@ -10,13 +10,13 @@ import java.util.stream.Stream;
  * Class to handle the filter that user enters.
  */
 public class Planner implements IPlanner {
-    /** Set contains all board games*/
+    /** Set contains all board games.*/
     private Set<BoardGame> games;
     /** Set contains filtered board games.*/
     private Set<BoardGame> filteredGames;
 
     /**
-     * Constructor for planners
+     * Constructor for planners.
      * @param games Set contains all board games.
      */
     public Planner(Set<BoardGame> games) {

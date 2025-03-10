@@ -4,7 +4,7 @@ package student;
  * Class to filter games.
  */
 public final class Filters {
-    /** private constructor */
+    /** private constructor.*/
     private Filters() { }
 
     /**

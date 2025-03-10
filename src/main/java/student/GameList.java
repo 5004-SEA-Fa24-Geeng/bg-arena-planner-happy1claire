@@ -10,10 +10,8 @@ import java.util.stream.Stream;
  * Class that store the game list that user want to play.
  */
 public class GameList implements IGameList {
-    /** List of games that user intend to play*/
+    /** List of games that user intend to play.*/
     private Set<String> listOfGames;
-    /** Constant that indicate all game when user type "all".*/
-    private final String ADD_ALL = "all";
 
     /**
      * Constructor for the GameList.

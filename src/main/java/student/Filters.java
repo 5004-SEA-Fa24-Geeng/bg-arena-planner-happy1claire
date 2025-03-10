@@ -1,8 +1,20 @@
 package student;
 
+/**
+ * Class to filter games.
+ */
 public final class Filters {
-    private Filters() {}
+    /** private constructor */
+    private Filters() { }
 
+    /**
+     * function to indicate whether a game match the conditions.
+     * @param game board game to be checked.
+     * @param column column that will be filtered.
+     * @param operations operation to be applied on filter.
+     * @param value value to be applied on filter.
+     * @return whether a game match the conditions.
+     */
     public static boolean filter(BoardGame game,
                                  GameData column,
                                  Operations operations,
@@ -32,6 +44,13 @@ public final class Filters {
         }
     }
 
+    /**
+     * Helper function to apply conditions on column that is string type.
+     * @param gameData The string type data to apply conditions on.
+     * @param operations operation to be applied on filter.
+     * @param value value to be applied on filter.
+     * @return whether a game data match the conditions.
+     */
     public static boolean filterString(String gameData, Operations operations, String value) {
         switch (operations) {
             case EQUALS:
@@ -53,6 +72,14 @@ public final class Filters {
         }
     }
 
+    /**
+     * Helper function to apply conditions on column that is integer type.
+     * @param gameData The integer type data to apply conditions on.
+     * @param operations operation to be applied on filter.
+     * @param value value to be applied on filter.
+     * @return whether a game data match the conditions.
+     */
+
     public static boolean filterNum(int gameData, Operations operations, String value) {
         int intValue = Integer.parseInt(value);
         switch (operations) {
@@ -73,6 +100,13 @@ public final class Filters {
         }
     }
 
+    /**
+     * Helper function to apply conditions on column that is double type.
+     * @param gameData The double type data to apply conditions on.
+     * @param operations operation to be applied on filter
+     * @param value value to be applied on filter.
+     * @return whether a game data match the conditions.
+     */
     public static boolean filterDouble(double gameData, Operations operations, String value) {
         double doubleValue = Double.parseDouble(value);
         switch (operations) {

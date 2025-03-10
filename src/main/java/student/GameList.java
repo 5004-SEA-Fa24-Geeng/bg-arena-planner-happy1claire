@@ -6,32 +6,53 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Stream;
 
+/**
+ * Class that store the game list that user want to play.
+ */
 public class GameList implements IGameList {
+    /** List of games that user intend to play*/
     private Set<String> listOfGames;
+    /** Constant that indicate all game when user type "all".*/
     private final String ADD_ALL = "all";
 
     /**
      * Constructor for the GameList.
+     * The game list that user intend to play is instantiated as empty list.
      */
     public GameList() {
         this.listOfGames = new HashSet<>();
     }
 
+    /**
+     * get the games names in the list.
+     * @return games names in the list.
+     */
     @Override
     public List<String> getGameNames() {
         return List.copyOf(this.listOfGames);
     }
 
+    /**
+     * Reset the game list to empty set.
+     */
     @Override
     public void clear() {
         this.listOfGames = new HashSet<>();
     }
 
+    /**
+     * Get the count of games in the list.
+     * @return Count of games in the list.
+     */
     @Override
     public int count() {
         return this.listOfGames.size();
     }
 
+    /**
+     * Save the game list to csv file.
+     * @param filename The name of the file to save the list to.
+     */
     @Override
     public void saveGame(String filename) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
@@ -44,6 +65,13 @@ public class GameList implements IGameList {
         }
     }
 
+    /**
+     * Add a game to the game list by name, index, or scope of index.
+     * @param str      the string to parse and add games to the list.
+     * @param filtered the filtered list to use as a basis for adding.
+     * @throws IllegalArgumentException the scope of number or a number beyond the index of game or
+     * the game name passed in not in the stream.
+     */
     @Override
     public void addToList(String str, Stream<BoardGame> filtered) throws IllegalArgumentException {
         List<BoardGame> filteredList = filtered.toList();
@@ -94,6 +122,12 @@ public class GameList implements IGameList {
         }
     }
 
+    /**
+     * Remove a game from the game list by name, index, or scope of index.
+     * @param str The string to parse and remove games from the list.
+     * @throws IllegalArgumentException the scope of number or a number beyond the index of game or
+     * the game name passed in not in the list.
+     */
     @Override
     public void removeFromList(String str) throws IllegalArgumentException {
         if (str.equals(ADD_ALL)) {
@@ -137,14 +171,29 @@ public class GameList implements IGameList {
         }
     }
 
+    /**
+     * Helper function to check if a string contains number scope.
+     * @param str string to check.
+     * @return whether the string contains number scope.
+     */
     private boolean containNumberScope(String str) {
         return str.matches("\\d+-\\d+");
     }
 
+    /**
+     * Helper function to check if a string contains only a number.
+     * @param str string to check.
+     * @return whether the string contains only a number.
+     */
     private boolean containOneNumber(String str) {
         return str.matches("\\d+");
     }
 
+    /**
+     * Helper function to check if a string contains only alphabets.
+     * @param str string to check.
+     * @return whether the string contains only alphabets.
+     */
     private boolean containStringOnly(String str) {
         return str.matches("\\w+");
     }
